@@ -1,51 +1,44 @@
-// A simple welcome message
-console.log("Welcome to my first interactive website!");
+// ===== SELECT ELEMENTS =====
+const searchBtn = document.getElementById("searchBtn");
+const cityInput = document.getElementById("cityInput");
+const cityName = document.getElementById("cityName");
+const temperature = document.getElementById("temperature");
+const condition = document.getElementById("condition");
 
-// Example: when the button is clicked
-function contactMe() {
-  const name = prompt("Hi there! What’s your name?");
-  if (name) {
-    alert(`Nice to meet you, ${name}! I’ll be in touch soon 😊`);
-  } else {
-    alert("No worries! Maybe next time 👋");
-  }
-}// Fade-in animation when scrolling
-const sections = document.querySelectorAll("section");
+// ===== YOUR API KEY =====
+const apiKey = "be470911a1d223aa133f8b3e591069d6";
 
-const revealSection = () => {
-  const triggerBottom = window.innerHeight * 0.8;
-
-  sections.forEach(section => {
-    const sectionTop = section.getBoundingClientRect().top;
-
-    if (sectionTop < triggerBottom) {
-      section.classList.add("show");
-    } else {
-      section.classList.remove("show");
-    }
-  });
-};
-
-window.addEventListener("scroll", revealSection);
-
-// Run on load
-revealSection();
-// Contact form submission
-const contactForm = document.querySelector(".contact-form");
-
-contactForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const name = document.querySelector("#name").value.trim();
-  const email = document.querySelector("#email").value.trim();
-  const message = document.querySelector("#message").value.trim();
-
-  if (name && email && message) {
-    alert(`Thank you, ${name}! Your message has been sent.`);
-    contactForm.reset();
-  } else {
-    alert("Please fill in all fields before submitting.");
-  }
+// ===== EVENT LISTENER =====
+searchBtn.addEventListener("click", getWeather);
+cityInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") getWeather();
 });
 
+// ===== FETCH WEATHER FUNCTION =====
+function getWeather() {
+  const city = cityInput.value.trim();
+  if (city === "") return;
 
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) throw new Error("City not found");
+      return response.json();
+    })
+    .then((data) => {
+      cityName.textContent = `${data.name}, ${data.sys.country}`;
+      temperature.textContent = `${Math.round(data.main.temp)} °C`;
+      condition.textContent = data.weather[0].main;
+
+      // Add smooth effect
+      document.querySelector(".weather-info").style.opacity = "1";
+    })
+    .catch((error) => {
+      cityName.textContent = "City not found 😕";
+      temperature.textContent = "-- °C";
+      condition.textContent = "--";
+    });
+
+  cityInput.value = "";
+}

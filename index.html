@@ -1,77 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ayomide’s Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather App</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Ayomide’s Portfolio</h1>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <section id="home">
-    <h2>Welcome 👋</h2>
-    <p>I’m Ayomide, a front-end developer in training. I love turning ideas into beautiful web experiences.</p>
-  </section>
-
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I’m learning web development step by step — HTML, CSS, and JavaScript.</p>
-  </section>
-<section id="projects">
-  <h2>My Projects</h2>
-  <div class="projects-container">
-    <div class="project-card">
-      <img src="https://via.placeholder.com/300x200" alt="Project 1">
-      <h3>Portfolio Website</h3>
-      <p>A responsive personal website built with HTML, CSS, and JavaScript.</p>
-      <a href="#" target="_blank">View Project</a>
+  <div class="weather-container">
+    <h1>🌦️ Weather App</h1>
+    <div class="search">
+      <input type="text" id="cityInput" placeholder="Enter city name..." />
+      <button id="searchBtn">Search</button>
     </div>
 
-    <div class="project-card">
-      <img src="https://via.placeholder.com/300x200" alt="Project 2">
-      <h3>Calculator App</h3>
-      <p>A simple calculator app made with JavaScript functions.</p>
-      <a href="#" target="_blank">View Project</a>
-    </div>
-
-    <div class="project-card">
-      <img src="https://via.placeholder.com/300x200" alt="Project 3">
-      <h3>Landing Page</h3>
-      <p>A modern, responsive landing page for a product or service.</p>
-      <a href="#" target="_blank">View Project</a>
+    <div class="weather-info">
+      <h2 id="cityName">--</h2>
+      <p id="temperature">-- °C</p>
+      <p id="condition">--</p>
     </div>
   </div>
-</section>
-
-
-
-<section id="contact">
-  <h2>Contact Me</h2>
-  <p>Have a question or want to work together? Send me a message below 👇</p>
-
-  <form class="contact-form">
-    <input type="text" id="name" placeholder="Your Name" required>
-    <input type="email" id="email" placeholder="Your Email" required>
-    <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-</section>
-
-
-  <footer>
-    <p>&copy; 2025 Ayomide’s Portfolio</p>
-  </footer>
 
   <script src="script.js"></script>
 </body>
